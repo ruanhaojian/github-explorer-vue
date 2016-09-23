@@ -1,0 +1,10 @@
+/**
+ * Created by ruanhaojian on 16/8/22.
+ */
+
+export const SHOW_MSG = 'SHOW_MSG'
+export const HIDE_MSG = 'HIDE_MSG'
+
+export const USER_PROFILE_REQUEST = 'USER_PROFILE_REQUEST'
+export const USER_PROFILE_RECEIVED = 'USER_PROFILE_RECEIVED'
+export const USER_PROFILE_REPOS_RECEIVED = 'USER_PROFILE_REPOS_RECEIVED'

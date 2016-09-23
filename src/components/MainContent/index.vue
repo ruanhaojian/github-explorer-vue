@@ -3,7 +3,7 @@
         <my-header></my-header>
         <div
                 id='scroll-section'
-                ref='scrollSection'
+                v-el:scrollSection
         >
 
             <router-view :transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"></router-view>

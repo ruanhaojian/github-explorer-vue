@@ -29,7 +29,7 @@ const router = new VueRouter ({
   // history: false,
   // saveScrollPosition: true,
   // suppressTransitionError: true,
-  transitionOnLoad: false
+  // transitionOnLoad: false
 })
 
 

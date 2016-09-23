@@ -1,13 +1,13 @@
 <template>
     <div>
         <div
-                ref='header'
+                v-el:header
                 class="header"
         >
             <hamburger-icon
                     :id="'hamberger-menu'"
             ></hamburger-icon>
-            <a v-link="{path:'/'}">
+            <a v-link="{name:'index'}">
                 <div id='brand-logo'></div>
             </a>
             <div id='notification-icon'></div>
@@ -33,43 +33,40 @@
 
             this.regEvent()
 
-
         },
         beforeDestory () {
 
         },
         methods: {
             unmountHeaderChange () {
-                this.refs.header.classList.remove('transparent')
-                // this.refs.header.removeEventListener('scroll')
+                this.$els.header.classList.remove('transparent')
+                this.$els.header.removeEventListener('scroll', this.scrollEvent)
+            },
+            scrollEvent () {
+                var _this = this
+
+                _this.lastScrollTop = _this.scrollSection.scrollTop
+                if (_this.wait === false) {
+                    window.requestAnimationFrame(() => {
+                        // Access direct to the DOM for better scrolling performance
+                        if (_this.lastScrollTop === 0) {
+                            _this.$els.header.classList.add('transparent')
+                        } else {
+                            _this.$els.header.classList.remove('transparent')
+                        }
+                        _this.wait = false
+                    })
+                    _this.wait = true
+                }
             },
             regEvent () {
                 this.unmountHeaderChange() // Make sure there is no multiple mount
-                this.refs.header.classList.add('transparent')
+                this.$els.header.classList.add('transparent')
                 this.scrollSection = document.getElementById('scroll-section')
                 this.wait = false
 
                 var _this = this
-                this.scrollSection.addEventListener('scroll', function () {
-
-                    if (!_this.state.isUserPage) {
-                        return false
-                    }
-
-                    _this.lastScrollTop = _this.scrollSection.scrollTop
-                    if (_this.wait === false) {
-                        window.requestAnimationFrame(() => {
-                            // Access direct to the DOM for better scrolling performance
-                            if (_this.lastScrollTop === 0) {
-                                _this.refs.header.classList.add('transparent')
-                            } else {
-                                _this.refs.header.classList.remove('transparent')
-                            }
-                            _this.wait = false
-                        })
-                        _this.wait = true
-                    }
-                })
+                this.scrollSection.addEventListener('scroll', this.scrollEvent)
             }
         }
     }

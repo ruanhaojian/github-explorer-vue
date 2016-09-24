@@ -3,9 +3,9 @@
 
         <div id='user-profile'>
 
-            <my-image
+            <Avatar
                     id="avatar"
-                    :src="profile.avatar_url"></my-image>
+                    :src="profile.avatar_url"></Avatar>
 
             <div id='user-info'>
                 <div id='user-info-upper'>
@@ -101,10 +101,10 @@
 <script type="text/Babel">
 
     import TextHolder from '../TextHolder/index.vue'
-    import MyImage from '../Image/index.vue'
+    import Avatar from '../Image/index.vue'
 
     export default {
-        components:{ TextHolder, MyImage },
+        components:{ TextHolder, Avatar },
         props : [ 'username', 'profile' ]
     }
 </script>

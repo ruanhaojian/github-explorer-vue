@@ -27,6 +27,7 @@
     import HamburgerIcon from '../HamburgerIcon/index.vue'
     import LoadingBlock from '../LoadingBlock/index.vue'
     import { ROUTES } from '../../routers'
+    import { toggleNavMenu } from '../../vuex/actions'
 
     export default {
         components: {
@@ -40,7 +41,7 @@
                 loadFailed: ({ header }) => header.loadFailed,
             },
             actions: {
-
+                toggleNavMenu
             }
         },
         data() {
@@ -48,15 +49,6 @@
                 scrollSection: null,
                 wait: false
             }
-        },
-        created(){
-
-        },
-        ready(){
-
-        },
-        beforeDestory () {
-
         },
         methods: {
             shouldShowBackBtn() {

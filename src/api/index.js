@@ -8,7 +8,7 @@ export default {
     getRandomUser: () => resources.getRandomUserResource.get(),
     getUserProfile: (username) => resources.getUserProfileResource.get({username:username}),
     getUserProfileRepos: (username) => resources.getUserProfileReposResource.get({username:username}),
-    getUsersResource: (keyword) => resources.getUserProfileResource(keyword).get(),
+    getUsers: (keyword) => resources.getUsersResource(keyword).get(),
 
 
 }

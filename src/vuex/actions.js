@@ -8,6 +8,21 @@ export const showMsg = ({dispatch}, content, type = 'error') => {
     dispatch(types.SHOW_MSG, {content: content, type: type})
 }
 
+// NavMenu
+export const fullNavMenu = ({ dispatch }) => {
+    dispatch(types.FULL_NAV_MENU);
+};
+export const openNavMenu = ({ dispatch }) => {
+    dispatch(types.OPEN_NAV_MENU);
+};
+export const closeNavMenu = ({ dispatch }) => {
+    dispatch(types.CLOSE_NAV_MENU);
+};
+export const toggleNavMenu = ({ dispatch }) => {
+    dispatch(types.TOGGLE_NAV_MENU);
+};
+
+// Header Loading
 export const triggerLoadAnimation = ({ dispatch }) => {
     dispatch(types.TRIGGER_LOAD_ANIMATION);
 };
@@ -21,6 +36,7 @@ export const triggerLoadAnimationFailed = ({ dispatch }) => {
     dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED);
 };
 
+// UserPage
 export const getRandomUser = ({dispatch}, username) => {
 
     dispatch(types.TRIGGER_LOAD_ANIMATION)
@@ -62,12 +78,33 @@ export const getUserProfileAndRepos = ({dispatch}, username) => {
             repos: repos
         })
 
-        dispatch(types.TRIGGER_LOAD_ANIMATION_DONE)
-        setTimeout(() => {
-            dispatch(types.TRIGGER_LOAD_ANIMATION_HIDE)
-        }, 600)
+        triggerLoadAnimationDone({dispatch})
+
     }, () => {
         dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
     });
+
+}
+
+
+// SearchUsers
+export const getUsers = ({dispatch}, keyword) => {
+
+
+    return api.getUsers(keyword).then(response => {
+
+        if (!response.ok) {
+            // return dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
+        }
+
+        const users = response.json().users.slice(0, 15)
+
+        dispatch(types.USERS_RECEIVED, {
+            users: users
+        })
+
+    }, response => {
+        dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
+    })
 
 }

@@ -57,7 +57,7 @@ export const getRandomUserResource = Vue.resource(`${ API_ROOT }search/users?q=t
 export const getUserProfileResource = Vue.resource(`${ API_ROOT }users{/username}`)
 export const getUserProfileReposResource = Vue.resource(`${ API_ROOT }search/repositories?q=user:{username}&sort=stars&page=1&per_page=${REPO_PER_PAGE}`)
 export const getUsersResource = (keyword) => {
-    return Vue.resource(`${ API_ROOT }/legacy/user/search/` + `${keyword || Math.random().toString(36).split('')[2]}%20sort:followers`)
+    return Vue.resource(`${ API_ROOT }legacy/user/search/` + `${keyword || Math.random().toString(36).split('')[2]}%20sort:followers`)
 }
 
 

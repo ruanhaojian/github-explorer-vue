@@ -1,11 +1,20 @@
+
+export const ROUTES = {
+	HOME: 'HOME',
+	USER_DETAIL: 'USER_DETAIL',
+	USER_REPO_LIST: 'USER_REPO_LIST',
+	REPO_DETAIL: 'REPO_DETAIL',
+};
+
 export default function (router) {
+
 	router.map ({
 		'/': {
-			name: 'index',
+			name: ROUTES.HOME,
 			component: require ('./components/UserPage/index.vue')
 		},
 		'/user/:username/repos': {
-			name: 'userPage',
+			name: ROUTES.USER_DETAIL,
 			component: require ('./components/UserPage/index.vue')
 		}
 	})

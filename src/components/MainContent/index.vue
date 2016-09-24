@@ -1,21 +1,19 @@
 <template>
     <div id='main-content' >
-        <my-header></my-header>
-        <div
-                id='scroll-section'
-                v-el:scrollSection
-        >
-
-            <router-view :transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"></router-view>
+        <header-bar></header-bar>
+        <div id="scroll-section" @scroll="$broadcast('scrollEvent')" v-el:scrollSection>
+            <router-view keep-alive :transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"></router-view>
+            <footer-bar v-if="$route.name !== 'USER_REPO_LIST'"></footer-bar>
         </div>
     </div>
 </template>
 
 <script type="text/Babel">
-    import MyHeader from '../Header/index.vue'
+    import HeaderBar from '../Header/index.vue'
+    import FooterBar from '../Footer/index.vue'
 
     export default {
-        components:{ MyHeader },
+        components:{ HeaderBar, FooterBar },
         vuex: {
             getters: {
                 route: (state) => state.route,
@@ -30,6 +28,14 @@
         },
         methods:{
 
+        },
+        events: {
+            'MOUNT_HEADER_CHANGE': function() {
+                this.$broadcast('MOUNT_HEADER_CHANGE');
+            },
+            'UNMOUNT_HEADER_CHANGE': function() {
+                this.$broadcast('UNMOUNT_HEADER_CHANGE');
+            }
         }
     }
 </script>

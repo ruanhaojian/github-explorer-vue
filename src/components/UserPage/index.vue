@@ -22,24 +22,40 @@
 </template>
 
 <script type="text/Babel">
-
     import Profile from '../Profile/index.vue'
+    import { getRandomUser } from '../../vuex/actions'
 
     export default {
         components:{ Profile },
         vuex: {
             getters: {
-                profile: {}
+                profile: ({ userPage }) => userPage.profile,
+                repos: ({ userPage }) => userPage.repos,
             },
             actions:{
-
+                getRandomUser,
             }
         },
         created(){
+            console.log('====>created')
+        },
+        ready(){
+            console.log('====>ready')
 
         },
+        route: {
+            data() {
+                this.initData()
+            }
+        },
         methods:{
-
+            initData(){
+                const username = this.$route.params.username;
+                if (username !== this.profile.login || !username) {
+                    this.getRandomUser(username);
+                }
+                this.$dispatch('MOUNT_HEADER_CHANGE');
+            }
         }
     }
 </script>

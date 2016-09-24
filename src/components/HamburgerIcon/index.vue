@@ -1,12 +1,10 @@
 <template>
     <div
             id="{{id}}"
-            onClick={props.onClick}
-
             class="nav-icon"
             :class="{
-                'open' : open,
-                'back' : back,
+                'open': open,
+                'back': back
             }"
     >
         <div class='nav-icon-bars'>
@@ -20,23 +18,7 @@
 <script type="text/Babel">
 
     export default {
-        components:{  },
-        props: [ 'id' ],
-        vuex: {
-            getters: {
-
-            },
-            actions:{
-
-            }
-        },
-        created(){
-
-        },
-
-        methods:{
-
-        }
+        props: [ 'id', 'open', 'back' ],
     }
 </script>
 

@@ -4,14 +4,14 @@
         :style="styleObj"
     >
         <div class="text-holder" v-if="!content" ></div>
-        <span v-else ><solt></solt></span>
+        <span v-else>{{content}}</span>
     </span>
 </template>
 
 <script type="text/Babel">
 
     export default {
-        props : ['width', 'height', 'center'],
+        props : ['width', 'height', 'center', 'content'],
         computed: {
             classObj() {
                 return {
@@ -29,7 +29,8 @@
                     return null
                 }
             }
-        }
+        },
+
     }
 </script>
 

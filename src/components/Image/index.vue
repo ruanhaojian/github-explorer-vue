@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<script>
+<script type="text/Babel">
     export default {
         data() {
             return {

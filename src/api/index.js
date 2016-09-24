@@ -5,7 +5,10 @@ import * as resources from './resources'
 
 export default {
     
-    getRandomUser: function () {
-        return resources.getRandomUserResource.get()
-    }
+    getRandomUser: () => resources.getRandomUserResource.get(),
+    getUserProfile: (username) => resources.getUserProfileResource.get({username:username}),
+    getUserProfileRepos: (username) => resources.getUserProfileReposResource.get({username:username}),
+    getUsersResource: (keyword) => resources.getUserProfileResource(keyword).get(),
+
+
 }

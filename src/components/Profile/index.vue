@@ -13,13 +13,15 @@
                         <text-holder
                                 width="190px"
                                 height="19px"
-                        >{{profile.name || profile.login}}</text-holder>
+                                :content="profile.name || profile.login"
+                        ></text-holder>
                     </h1>
                     <h2>
                         <text-holder
                                 width="100px"
                                 height="16px"
-                        >{{profile.login || profile.name}}</text-holder>
+                                :content="profile.login || profile.name"
+                        ></text-holder>
                     </h2>
                 </div>
                 <div id='user-info-lower'>
@@ -36,9 +38,8 @@
                     width="200px"
                     height="20px"
                     :center="true"
-            >
-                {{profile.bio}}
-            </text-holder>
+                    :content="profile.bio"
+            ></text-holder>
         </div>
 
         <div id='user-stats'>
@@ -50,7 +51,8 @@
                             width="40px"
                             height="20px"
                             :center="true"
-                    >{{profile.followers}}</text-holder>
+                            :content="profile.followers"
+                    ></text-holder>
                 </div>
                 <div class='stats-description'>Followers</div>
             </div>
@@ -63,7 +65,8 @@
                             width="40px"
                             height="20px"
                             :center="true"
-                    >{{profile.public_repos}}</text-holder>
+                            :content="profile.public_repos"
+                    ></text-holder>
                 </div>
                 <div class='stats-description'>Public repos</div>
             </div>
@@ -76,7 +79,8 @@
                             width="40px"
                             height="20px"
                             :center="true"
-                    >{{profile.following}}</text-holder>
+                            :content="profile.following"
+                    ></text-holder>
                 </div>
                 <div class='stats-description'>Following</div>
             </div>

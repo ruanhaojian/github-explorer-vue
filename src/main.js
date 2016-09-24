@@ -6,9 +6,12 @@ import configRouter from './routers'
 import filters from './filters'
 import FastClick from 'fastclick'
 import App from './App'
-import 'assets/styles/animate.css'
+import './assets/styles/animate.css'
 import 'font-awesome/css/font-awesome.css'
-import 'assets/scss/index.scss'
+import './assets/fonts/GothamPro/styles.css';
+import './assets/fonts/GothamPro-Bold/styles.css';
+import './assets/fonts/GothamPro-Medium/styles.css';
+import './assets/scss/index.scss'
 
 // plugins
 // import Device from 'vux/src/plugins/device'

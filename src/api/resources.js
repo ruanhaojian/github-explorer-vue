@@ -4,11 +4,16 @@ import {API_ROOT} from '../config'
 import store from '../vuex/store'
 import { showMsg,hideMsg } from '../vuex/actions'
 
+const TOKEN = '48d499e1bbc2e206d1e4f720f101af12a5918806'
+const REPO_PER_PAGE = 10
+
 Vue.use(VueResource)
 
+Vue.http.headers.common['Authorization'] = `token ${TOKEN}`;
+
 // HTTP相关
-Vue.http.options.crossOrigin = true
-Vue.http.options.credentials = true
+// Vue.http.options.crossOrigin = true
+// Vue.http.options.credentials = true
 
 Vue.http.interceptors.push((request, next)=>{
     // 这里对请求体进行处理
@@ -48,8 +53,12 @@ Vue.http.interceptors.push((request, next)=>{
     })
 })
 
-export const getRandomUserResource = Vue.resource(`${ API_ROOT }/search/users?q=type:user&page=1&per_page=1`)
-
+export const getRandomUserResource = Vue.resource(`${ API_ROOT }search/users?q=type:user&page=1&per_page=1`)
+export const getUserProfileResource = Vue.resource(`${ API_ROOT }users{/username}`)
+export const getUserProfileReposResource = Vue.resource(`${ API_ROOT }search/repositories?q=user:{username}&sort=stars&page=1&per_page=${REPO_PER_PAGE}`)
+export const getUsersResource = (keyword) => {
+    return Vue.resource(`${ API_ROOT }/legacy/user/search/` + `${keyword || Math.random().toString(36).split('')[2]}%20sort:followers`)
+}
 
 
 // export const GankDataResource = Vue.resource(API_ROOT + 'api/random/data{/keyword}{/itemsPerPage}{/currentPage}')

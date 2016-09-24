@@ -53,7 +53,7 @@ export const getUserProfileAndRepos = ({dispatch}, username) => {
     ]).then(([ res1, res2 ]) => {
     
         const profile = res1.json() || {}
-        const repos = (res1.json() || {items:[]}).items
+        const repos = (res2.json() || {items:[]}).items
     
         dispatch(types.USER_PROFILE_RECEIVED, {
             profile: profile

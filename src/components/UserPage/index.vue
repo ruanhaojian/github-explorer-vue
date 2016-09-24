@@ -9,7 +9,14 @@
         <div class='repo-list'>
             <div class='repo-list-header'>POPULAR REPOSITORIES</div>
             <div>
-
+                <repo-item
+                        v-for="repo in repos"
+                        :repo="repo"
+                        class="animated"
+                        transition="lineup"
+                        stagger="80"
+                        style="animation-duration: .3s;"
+                ></repo-item>
             </div>
         </div>
         <a
@@ -23,10 +30,11 @@
 
 <script type="text/Babel">
     import Profile from '../Profile/index.vue'
+    import RepoItem from '../RepoItem/index.vue'
     import { getRandomUser } from '../../vuex/actions'
 
     export default {
-        components:{ Profile },
+        components:{ Profile, RepoItem },
         vuex: {
             getters: {
                 profile: ({ userPage }) => userPage.profile,
@@ -35,13 +43,6 @@
             actions:{
                 getRandomUser,
             }
-        },
-        created(){
-            console.log('====>created')
-        },
-        ready(){
-            console.log('====>ready')
-
         },
         route: {
             data() {
@@ -55,6 +56,12 @@
                     this.getRandomUser(username);
                 }
                 this.$dispatch('MOUNT_HEADER_CHANGE');
+            }
+        },
+        transitions: {
+            'lineup': {
+                enterClass: 'fadeInUp',
+                leaveClass: 'fadeOutRight'
             }
         }
     }

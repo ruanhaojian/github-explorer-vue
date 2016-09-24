@@ -4,11 +4,9 @@
 import * as resources from './resources'
 
 export default {
-    
     getRandomUser: () => resources.getRandomUserResource.get(),
     getUserProfile: (username) => resources.getUserProfileResource.get({username:username}),
     getUserProfileRepos: (username) => resources.getUserProfileReposResource.get({username:username}),
     getUsers: (keyword) => resources.getUsersResource(keyword).get(),
-
-
+    searchUserRepos: (username, keyword, page) => resources.searchUserReposResource(username, keyword, page).get(),
 }

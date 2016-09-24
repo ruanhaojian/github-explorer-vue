@@ -9,6 +9,7 @@ import showMsg from './modules/showmsg'
 import userPage from './modules/userPage'
 import header from './modules/header'
 import navMenu from './modules/navMenu'
+import repoList from './modules/repoList'
 
 const debug = process.env.NODE_ENV !== 'production'
 Vue.use(Vuex)
@@ -30,7 +31,8 @@ export default new Vuex.Store({
         showMsg,
         userPage,
         header,
-        navMenu
+        navMenu,
+        repoList
     },
     strict: debug,
     middlewares,

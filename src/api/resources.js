@@ -59,8 +59,9 @@ export const getUserProfileReposResource = Vue.resource(`${ API_ROOT }search/rep
 export const getUsersResource = (keyword) => {
     return Vue.resource(`${ API_ROOT }legacy/user/search/` + `${keyword || Math.random().toString(36).split('')[2]}%20sort:followers`)
 }
+export const searchUserReposResource = (username, keyword, page) => {
+    return Vue.resource(`${ API_ROOT }search/repositories` +
+        `?q=${keyword}%20user:${username}&sort=updated&page=${page}&per_page=${REPO_PER_PAGE}`)
+}
 
 
-// export const GankDataResource = Vue.resource(API_ROOT + 'api/random/data{/keyword}{/itemsPerPage}{/currentPage}')
-// export const GankHistoryResource = Vue.resource(API_ROOT + 'api/history/content{/itemsPerPage}{/currentPage}')
-// export const GankSearchResource = Vue.resource(API_ROOT + 'api/search/query{/query}/category{/category}/count{/itemsPerPage}/page{/currentPage}')

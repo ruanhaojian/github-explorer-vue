@@ -20,7 +20,7 @@
             </div>
         </div>
         <a
-                v-link="`/user/${this.profile.login}/repos`"
+                v-link="{path: `/user/${profile.login}/repos`}"
                 class='view-all-btn'
         >
         VIEW ALL REPOS
@@ -46,6 +46,7 @@
         },
         route: {
             data() {
+                this.$parent.$els.scrollsection.scrollTop = 0
                 this.initData()
             }
         },

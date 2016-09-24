@@ -23,9 +23,7 @@
 
             }
         },
-        created(){
 
-        },
         methods:{
 
         },

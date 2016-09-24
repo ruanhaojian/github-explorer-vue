@@ -4,6 +4,8 @@
 import api from '../api'
 import * as types from './types'
 
+export const REPO_PER_PAGE = 10
+
 export const showMsg = ({dispatch}, content, type = 'error') => {
     dispatch(types.SHOW_MSG, {content: content, type: type})
 }
@@ -107,4 +109,39 @@ export const getUsers = ({dispatch}, keyword) => {
         dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
     })
 
+}
+
+// SearchUserRepos
+export const searchUserRepos = ({dispatch}, username, keyword, page ) => {
+    
+    dispatch(types.TRIGGER_LOAD_ANIMATION)
+    
+    return api.searchUserRepos(username, keyword, page).then(response => {
+        
+        if (!response.ok) {
+            return dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
+        }
+        
+        var json = response.json()
+
+
+        if (+page > 1) {
+            dispatch(types.USER_REPOS_NEXT_PAGE_RECEIVED, {
+                page,
+                repos: json.items,
+                complete: json.items.length < REPO_PER_PAGE
+            })
+        } else {
+            dispatch(types.USER_REPOS_RECEIVED, {
+                repos: json.items,
+                complete: json.items.length < REPO_PER_PAGE
+            })
+        }
+
+        triggerLoadAnimationDone({dispatch})
+        
+    }, response => {
+        dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
+    })
+    
 }

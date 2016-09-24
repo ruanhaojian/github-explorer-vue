@@ -4,7 +4,7 @@
         :style="styleObj"
     >
         <div class="text-holder" v-if="!content" ></div>
-        <span v-else>{{content}}</span>
+        <template v-else>{{content}}</template>
     </span>
 </template>
 

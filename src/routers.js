@@ -13,9 +13,13 @@ export default function (router) {
 			name: ROUTES.HOME,
 			component: require ('./components/UserPage/index.vue')
 		},
-		'/user/:username/repos': {
+		'/user/:username': {
 			name: ROUTES.USER_DETAIL,
 			component: require ('./components/UserPage/index.vue')
+		},
+		'/user/:username/repos': {
+			name: ROUTES.USER_REPO_LIST,
+			component: require ('./components/RepoList/index.vue')
 		}
 	})
 	// router.beforeEach((transition)=>{

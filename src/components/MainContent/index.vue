@@ -2,8 +2,9 @@
     <div id='main-content' >
         <header-bar></header-bar>
         <div id="scroll-section" @scroll="$broadcast('scrollEvent')" v-el:scrollSection>
-            <router-view keep-alive :transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"></router-view>
-            <footer-bar v-if="$route.name !== 'USER_REPO_LIST'"></footer-bar>
+            <!--:transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"-->
+            <router-view keep-alive ></router-view>
+            <footer-bar v-if="this.$route.name !== 'USER_REPO_LIST'" v-el:footerBarEl ></footer-bar>
         </div>
     </div>
 </template>
@@ -23,9 +24,42 @@
 
             }
         },
+        watch: {
+            '$route' (to, from) {
+                // react to route changes...
 
+//                if(to.name === 'USER_REPO_LIST'){
+//                    this.hackTheFooter()
+//                }else{
+//                    setTimeout(() => {
+//                        this.$els.footerbarel.style.display = 'flex'
+//                    },800)
+//                }
+
+            }
+        },
+        attached(){
+//            this.$els.footerbarel.style.display = 'none'
+//            if(this.$route.name === 'USER_REPO_LIST'){
+//                setTimeout(() => {
+//                    this.hackTheFooter()
+//                },800)
+//            }else{
+//                setTimeout(() => {
+//                    this.$els.footerbarel.style.display = 'flex'
+//                },800)
+//            }
+
+        },
         methods:{
-
+            hackTheFooter () {
+                const oldFooter = document.querySelector('.footer')
+                const newFooter = oldFooter.cloneNode(true)
+                oldFooter.style.display = 'none'
+                newFooter.style.display = 'flex'
+                newFooter.classList.remove('original')
+                document.querySelector('#repo-list-page #scroll-wrapper').appendChild(newFooter)
+            }
         },
         events: {
             'MOUNT_HEADER_CHANGE': function() {

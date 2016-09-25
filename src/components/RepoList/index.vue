@@ -42,9 +42,11 @@
                         >
                             {{isSearching ? 'LOADING...' : 'LOAD MORE'}}
                         </div>
+
                     </div>
                 </template>
             </div>
+            <footer-bar v-if="$route.name === 'USER_REPO_LIST'"></footer-bar>
         </div>
     </div>
 </template>
@@ -52,6 +54,7 @@
 <script type="text/Babel">
     import SearchInput from '../SearchInput/index.vue';
     import RepoItem from '../RepoItem/index.vue';
+    import FooterBar from '../Footer/index.vue'
 
     import {
             searchUserRepos
@@ -78,7 +81,8 @@
         },
         components: {
             SearchInput,
-            RepoItem
+            RepoItem,
+            FooterBar
         },
         route: {
             data() {
@@ -126,7 +130,7 @@
                 this.searchUserRepos(username, keyword, page).finally(() => {
                     this.isSearching = false
                 })
-            },
+            }
         },
         transitions: {
             'zoom': {

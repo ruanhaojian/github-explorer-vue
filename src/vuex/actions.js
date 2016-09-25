@@ -2,6 +2,7 @@
  * Created by ruanhaojian on 16/8/22.
  */
 import api from '../api'
+import { Base64 } from 'js-base64';
 import * as types from './types'
 
 export const REPO_PER_PAGE = 10
@@ -145,3 +146,66 @@ export const searchUserRepos = ({dispatch}, username, keyword, page ) => {
     })
     
 }
+
+// search all detail
+export const getRepoPageDetail = ({dispatch}, username, repoName) => {
+
+    dispatch(types.TRIGGER_LOAD_ANIMATION)
+
+    return Promise.all([
+        api.getRepoDetail(username, repoName),
+        api.getRepoReadme(username, repoName),
+        api.getRepoContents(username, repoName),
+        api.getRepoContribs(username, repoName),
+        api.getRepoLanguages(username, repoName)
+    ]).then(([ repoResp, readmeDataResp, contentsResp, contribsResp, languagesResp ]) => {
+
+        var repo = repoResp.json(),
+            readmeData = readmeDataResp.json(),
+            contents = contentsResp.json(),
+            contribs = contribsResp.json(),
+            languages = languagesResp.json();
+
+
+        var readme = readmeData.content || ''
+        readme = Base64.decode(readme.replace(/\s/g, ''))
+
+        contents.sort((a, b) => a.type.localeCompare(b.type))
+
+        const newLanguages = Object.keys(languages)
+            .map(key => ({ name: key, value: languages[key] }))
+
+        let total = 0
+        if (newLanguages.length === 0) {
+            total = 0
+        } else if (newLanguages.length === 1) {
+            total = newLanguages[0].value
+        } else {
+            total = newLanguages.reduce((a, b) => ({ value: a.value + b.value })).value
+        }
+
+        var nl = newLanguages.map(a => ({
+            name  : a.name,
+            value : Math.round(1000 * a.value / total) / 10
+        }))
+
+
+
+        dispatch(types.REPO_DETAIL_RECEIVED_ALL, {
+            repo,
+            readme    : readme,
+            contents,
+            contribs,
+            languages : nl
+        })
+
+    }).then(() => {
+        triggerLoadAnimationDone({dispatch})
+
+    }).catch(error => {
+        dispatch(types.TRIGGER_LOAD_ANIMATION_FAILED)
+    })
+
+}
+
+

@@ -10,6 +10,7 @@ import userPage from './modules/userPage'
 import header from './modules/header'
 import navMenu from './modules/navMenu'
 import repoList from './modules/repoList'
+import repoDetail from './modules/repoDetail'
 
 const debug = process.env.NODE_ENV !== 'production'
 Vue.use(Vuex)
@@ -32,7 +33,8 @@ export default new Vuex.Store({
         userPage,
         header,
         navMenu,
-        repoList
+        repoList,
+        repoDetail
     },
     strict: debug,
     middlewares,

@@ -63,5 +63,11 @@ export const searchUserReposResource = (username, keyword, page) => {
     return Vue.resource(`${ API_ROOT }search/repositories` +
         `?q=${keyword}%20user:${username}&sort=updated&page=${page}&per_page=${REPO_PER_PAGE}`)
 }
+export const getRepoDetailResource = Vue.resource(`${ API_ROOT }repos{/username}{/repoName}`)
+export const getRepoReadmeResource = Vue.resource(`${ API_ROOT }repos{/username}{/repoName}/readme`)
+export const getRepoContentsResource = Vue.resource(`${ API_ROOT }repos{/username}{/repoName}/contents`)
+export const getRepoContribsResource = Vue.resource(`${ API_ROOT }repos{/username}{/repoName}/contributors`)
+export const getRepoLanguagesResource = Vue.resource(`${ API_ROOT }repos{/username}{/repoName}/languages`)
+
 
 

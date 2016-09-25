@@ -11,6 +11,7 @@ import 'font-awesome/css/font-awesome.css'
 import './assets/fonts/GothamPro/styles.css';
 import './assets/fonts/GothamPro-Bold/styles.css';
 import './assets/fonts/GothamPro-Medium/styles.css';
+import 'github-markdown-css/github-markdown.css'
 import './assets/scss/index.scss'
 
 // plugins

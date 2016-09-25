@@ -9,8 +9,8 @@
             </a>
         </div>
         <div id="footer-credit">
-            As you know. <br />
-            Winter is coming.
+            Winter is coming.<br />
+            Created by rhj.
         </div>
     </div>
 </template>

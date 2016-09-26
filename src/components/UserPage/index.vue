@@ -19,12 +19,12 @@
                 ></repo-item>
             </div>
         </div>
-        <a
-                v-link="{path: `/user/${profile.login}/repos`}"
+        <div
+                v-link="{ name : 'USER_REPO_LIST' , params: { username: this.profile.login }}"
                 class='view-all-btn'
         >
         VIEW ALL REPOS
-        </a>
+        </div>
     </div>
 </template>
 

@@ -28,7 +28,7 @@ $tabHeight: 50px;
 #repo-tabs-wrapper {
   height: $tabHeight;
   overflow: hidden;
-  border-bottom: solid 0.5px #e5e5e5;
+  border-bottom: solid 1px #e5e5e5;
   z-index: 2;
 
   &.fixed {
@@ -148,7 +148,7 @@ $tabHeight: 50px;
   margin-bottom: 5px;
   border-radius: 6px;
   background-color: #ffffff;
-  border: solid 0.5px #e5e5e5;
+  border: solid 1px #e5e5e5;
   padding: 15px;
 
   &:last-child {

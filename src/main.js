@@ -29,10 +29,10 @@ Object.keys (filters).forEach (k => Vue.filter (k, filters[k]))
 // Vue.use(AlertPlugin)
 
 const router = new VueRouter ({
-  // hashbang: true,
-  // history: false,
-  // saveScrollPosition: true,
-  // suppressTransitionError: true,
+  hashbang: true,
+  history: false,
+  saveScrollPosition: true,
+  suppressTransitionError: true,
   // transitionOnLoad: false
 })
 
@@ -47,43 +47,43 @@ history.setItem('/', 0)
  * sync router loading status
  */
 const commit = store.commit || store.dispatch
-router.beforeEach(({ to, from, next }) => {
-  const toIndex = history.getItem(to.path)
-  const fromIndex = history.getItem(from.path)
-  if (toIndex) {
-    if (toIndex > fromIndex) {
-      commit('UPDATE_DIRECTION', 'forward')
-    } else {
-      commit('UPDATE_DIRECTION', 'reverse')
-    }
-  } else {
-    ++historyCount
-    history.setItem('count', historyCount)
-    to.path !== '/' && history.setItem(to.path, historyCount)
-    commit('UPDATE_DIRECTION', 'forward')
-  }
-  // 必须延时 不然动画不对
-  setTimeout(next, 50)
-})
+// router.beforeEach(({ to, from, next }) => {
+//   const toIndex = history.getItem(to.path)
+//   const fromIndex = history.getItem(from.path)
+//   if (toIndex) {
+//     if (toIndex > fromIndex) {
+//       commit('UPDATE_DIRECTION', 'forward')
+//     } else {
+//       commit('UPDATE_DIRECTION', 'reverse')
+//     }
+//   } else {
+//     ++historyCount
+//     history.setItem('count', historyCount)
+//     to.path !== '/' && history.setItem(to.path, historyCount)
+//     commit('UPDATE_DIRECTION', 'forward')
+//   }
+//   // 必须延时 不然动画不对
+//   setTimeout(next, 50)
+// })
 
 sync (store, router)
 configRouter (router)
 
-router.beforeEach (function ({to, next, redirect}) {
-  
-  FastClick.attach (document.body)
-  
-  if (to.auth) {
-    if (true) {
-      next ()
-    } else {
-      redirect ('/login?redirect=' + encodeURIComponent (to.path))
-    }
-  } else {
-    next ()
-  }
-  
-})
+// router.beforeEach (function ({to, next, redirect}) {
+//
+//   FastClick.attach (document.body)
+//
+//   if (to.auth) {
+//     if (true) {
+//       next ()
+//     } else {
+//       redirect ('/login?redirect=' + encodeURIComponent (to.path))
+//     }
+//   } else {
+//     next ()
+//   }
+//
+// })
 
 router.start (Vue.extend (App), '#root')
 window.router = router

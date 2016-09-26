@@ -18,11 +18,11 @@
             <div id="loading" v-if="searching">
                 <div class="loading"></div>
             </div>
-            <a class="user-item animated"
+            <div class="user-item animated"
                v-for="user in users"
                transition="fade"
                stagger="100"
-               @click="userClick(`/user/${user.login}`)"
+               @click="userClick(user.login)"
             >
                 <avatar
                         class="user-avatar"
@@ -32,7 +32,7 @@
                     <div class="fullname">{{user.fullname || user.login}}</div>
                     <div class="username">{{user.login || user.fullname}}</div>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 
@@ -86,10 +86,11 @@
                     this.searching = false
                 })
             },
-            userClick(url) {
+            userClick(username) {
                 this.closeNavMenu();
+//                this.$router.go(url);
                 setTimeout(() => {
-                        this.$router.go(url);
+                        this.$router.go({name: 'USER_DETAIL' , params: { username: username }});
                 }, 300)
             },
             highlightSearchbar() {

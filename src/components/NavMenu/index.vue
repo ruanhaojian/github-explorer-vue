@@ -19,10 +19,10 @@
                 <div class="loading"></div>
             </div>
             <a class="user-item animated"
-               @click="userClick(`/user/${user.login}`)"
+               v-for="user in users"
                transition="fade"
                stagger="100"
-               v-for="user in users"
+               @click="userClick(`/user/${user.login}`)"
             >
                 <avatar
                         class="user-avatar"

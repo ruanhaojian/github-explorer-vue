@@ -6,7 +6,7 @@
 
 [Live Demo](https://ruanhaojian.github.io/Github-Explorer-Demo/vue/)
 
-<img src="https://ruanhaojian.github.io/Github-Explorer-Demo/qr_code.png" />
+<img src="https://ruanhaojian.github.io/Github-Explorer-Demo/qr_code_vue.png" />
 
 ## Build Setup
 

@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
     <div id="repo-detail"
          class="transition-item animated"
          transition="zoom"
@@ -59,7 +59,7 @@
                      v-for="contrib in contribs"
                 >
                     <div class="contrib-avatar"
-                         :style="{'backgroundImage': `url('${contrib.avatar_url}')`}"
+                         :style="{'backgroundImage': 'url(' + contrib.avatar_url + ')'}"
                     ></div>
                     <div class="contrib-info">
                         <div class="contrib-name">{{contrib.login}}</div>
@@ -147,14 +147,19 @@
             VueMarkdown
         },
         route: {
-            data() {}
+            data() {
+//                this.scrollDom = document.getElementById('scroll-section');
+//                this.scrollDom.addEventListener('scroll', this.onSectionScroll)
+            }
         },
         attached() {
             this.$parent.$els.scrollsection.scrollTop = 0
-            this.scrollDom = document.getElementById('scroll-section');
+
             this.getProfile();
             this.$dispatch('MOUNT_HEADER_CHANGE');
             this.$dispatch('UNMOUNT_HEADER_CHANGE');
+
+
         },
         methods: {
             getProfile() {
@@ -163,7 +168,9 @@
                 this.getRepoPageDetail(...args).then(() => {
                     this.loadFailed = false;
                     this.activeTab = 'readme';
-                    this.refreshContentHeight(this.TABS[0]);
+                    setTimeout(() => {
+                        this.refreshContentHeight(this.TABS[0]);
+                    },500)
                 }, () => {
                     this.loadFailed = true;
                 });
@@ -179,6 +186,20 @@
             },
             getColor(language) {
                 return COLORS[language].color;
+            },
+            onSectionScroll(){
+                let lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
+                if (!this.wait) {
+                    window.requestAnimationFrame(() => {
+                        if (lastOffsetTop < 60) {
+                            this.$els.tabwrapper.classList.add('fixed');
+                        } else {
+                            this.$els.tabwrapper.classList.remove('fixed');
+                        }
+                        this.wait = false;
+                    });
+                    this.wait = true;
+                }
             }
         },
         filters: {
@@ -189,10 +210,10 @@
         },
         events: {
             'scrollEvent': function() {
-                let lastOffsetTop = this.$els.tabwrapper.parentElement.parentElement.getBoundingClientRect().top;
+                let lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
                 if (!this.wait) {
                     window.requestAnimationFrame(() => {
-                        if (lastOffsetTop < -88) {
+                        if (lastOffsetTop < 60) {
                             this.$els.tabwrapper.classList.add('fixed');
                         } else {
                             this.$els.tabwrapper.classList.remove('fixed');

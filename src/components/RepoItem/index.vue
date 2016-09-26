@@ -1,10 +1,10 @@
 <template>
     <!--`/user/${this.repo.owner.login}/repos/${this.repo.name}`-->
-    <div v-link="{name: 'REPO_DETAIL' , params: { username: this.repo.owner.login, repoName: this.repo.name }}"
+    <a v-link="{name: 'REPO_DETAIL' , params: { username: this.repo.owner.login, repoName: this.repo.name }}"
        class="repo-item"
     >
         <repo-content :repo="repo"></repo-content>
-    </div>
+    </a>
 </template>
 
 <script type="text/Babel">

@@ -26,7 +26,7 @@
             >
                 <avatar
                         class="user-avatar"
-                        :src="`https://avatars.githubusercontent.com/u/${user.id.split('-')[1]}`"
+                        :src="'https://avatars.githubusercontent.com/u/' + user.id.split('-')[1]"
                 ></avatar>
                 <div class="user-info">
                     <div class="fullname">{{user.fullname || user.login}}</div>

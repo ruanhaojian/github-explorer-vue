@@ -3,7 +3,7 @@
          :id="id"
          :class="className"
          :style="loaded ? {
-            backgroundImage: `url('${src}')`,
+            'background-image': 'url(' + src + ')',
             opacity: 1,
         } : {}">
     </div>

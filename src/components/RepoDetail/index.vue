@@ -192,7 +192,7 @@
                 let lastOffsetTop = this.$els.tabwrapper.parentElement.parentElement.getBoundingClientRect().top;
                 if (!this.wait) {
                     window.requestAnimationFrame(() => {
-                        if (lastOffsetTop < -90) {
+                        if (lastOffsetTop < -88) {
                             this.$els.tabwrapper.classList.add('fixed');
                         } else {
                             this.$els.tabwrapper.classList.remove('fixed');

@@ -1,6 +1,7 @@
 <template>
     <div id='main-content' >
         <header-bar></header-bar>
+        <!--@scroll="$broadcast('scrollEvent')"-->
         <div id="scroll-section" @scroll="$broadcast('scrollEvent')" v-el:scrollSection>
             <!--:transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"-->
             <router-view keep-alive ></router-view>

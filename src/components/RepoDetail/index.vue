@@ -188,10 +188,10 @@
                 return COLORS[language].color;
             },
             onSectionScroll(){
-                let lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
+                this.lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
                 if (!this.wait) {
                     window.requestAnimationFrame(() => {
-                        if (lastOffsetTop < 60) {
+                        if (this.lastOffsetTop < 60) {
                             this.$els.tabwrapper.classList.add('fixed');
                         } else {
                             this.$els.tabwrapper.classList.remove('fixed');
@@ -209,14 +209,19 @@
             },
         },
         events: {
-            'scrollEvent': function() {
-                let lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
+            scrollEvent() {
+                let tabwrapper = this.$els.tabwrapper
+                let lastOffsetTop = tabwrapper.parentElement.getBoundingClientRect().top;
                 if (!this.wait) {
                     window.requestAnimationFrame(() => {
                         if (lastOffsetTop < 60) {
-                            this.$els.tabwrapper.classList.add('fixed');
+                            tabwrapper.classList.add('fixed');
+                            //tabwrapper.style.position = 'absolute'
+                            //tabwrapper.style.top = 60 + 'px'
                         } else {
-                            this.$els.tabwrapper.classList.remove('fixed');
+                            tabwrapper.classList.remove('fixed');
+                            //tabwrapper.style.position = 'relative'
+                            //tabwrapper.style.top = 0 + 'px'
                         }
                         this.wait = false;
                     });

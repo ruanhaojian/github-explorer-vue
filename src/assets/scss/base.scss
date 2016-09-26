@@ -14,12 +14,14 @@ html,body {
   height: 100%;
   overflow: hidden;
   background-color: #3d536d;
+  position: relative;
 }
 
-#root{
+#root, #app{
   overflow: hidden;
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 h1, h2, h3, h4 {
@@ -108,13 +110,3 @@ a {
   }
 }
 
-.loading {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  border: .25rem solid rgba(255,255,255,0.2);
-  border-top-color: white;
-  animation: spining 1s infinite linear;
-  -webkit-animation: spining 1s infinite linear;
-  margin: 0 auto;
-}

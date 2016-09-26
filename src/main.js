@@ -69,21 +69,21 @@ const commit = store.commit || store.dispatch
 sync (store, router)
 configRouter (router)
 
-// router.beforeEach (function ({to, next, redirect}) {
-//
-//   FastClick.attach (document.body)
-//
-//   if (to.auth) {
-//     if (true) {
-//       next ()
-//     } else {
-//       redirect ('/login?redirect=' + encodeURIComponent (to.path))
-//     }
-//   } else {
-//     next ()
-//   }
-//
-// })
+router.beforeEach (function ({to, next, redirect}) {
+
+  FastClick.attach (document.body)
+
+  if (to.auth) {
+    if (true) {
+      next ()
+    } else {
+      redirect ('/login?redirect=' + encodeURIComponent (to.path))
+    }
+  } else {
+    next ()
+  }
+
+})
 
 router.start (Vue.extend (App), '#root')
 window.router = router

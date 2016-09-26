@@ -7,8 +7,8 @@
     >
         <repo-content :repo="repo"></repo-content>
         <div class="tab-wrapper-transition-group">
-            <div id="repo-tabs-wrapper" v-el:tabwrapper>
-                <div id="repo-tabs">
+            <div id="repo-tabs-wrapper" v-el:tabwrapper >
+                <div id="repo-tabs" >
                     <div v-for="tab in TABS"
                          @click="switchTab(tab)"
                          class="repo-tab-item"
@@ -148,8 +148,9 @@
         },
         route: {
             data() {
-//                this.scrollDom = document.getElementById('scroll-section');
-//                this.scrollDom.addEventListener('scroll', this.onSectionScroll)
+                //this.scrollDom = document.getElementById('scroll-section');
+                //this.scrollDom.removeEventListener('scroll', this.onSectionScroll)
+                //this.scrollDom.addEventListener('scroll', this.onSectionScroll)
             }
         },
         attached() {
@@ -159,7 +160,9 @@
             this.$dispatch('MOUNT_HEADER_CHANGE');
             this.$dispatch('UNMOUNT_HEADER_CHANGE');
 
-
+        },
+        detached(){
+            //this.scrollDom.removeEventListener('scroll', this.onSectionScroll)
         },
         methods: {
             getProfile() {
@@ -188,13 +191,14 @@
                 return COLORS[language].color;
             },
             onSectionScroll(){
-                this.lastOffsetTop = this.$els.tabwrapper.parentElement.getBoundingClientRect().top;
+                let tabwrapper = this.$els.tabwrapper
+                let lastOffsetTop = tabwrapper.parentElement.getBoundingClientRect().top;
                 if (!this.wait) {
                     window.requestAnimationFrame(() => {
-                        if (this.lastOffsetTop < 60) {
-                            this.$els.tabwrapper.classList.add('fixed');
+                        if (lastOffsetTop < 60) {
+                            tabwrapper.classList.add('fixed');
                         } else {
-                            this.$els.tabwrapper.classList.remove('fixed');
+                            tabwrapper.classList.remove('fixed');
                         }
                         this.wait = false;
                     });
@@ -216,12 +220,8 @@
                     window.requestAnimationFrame(() => {
                         if (lastOffsetTop < 60) {
                             tabwrapper.classList.add('fixed');
-                            //tabwrapper.style.position = 'absolute'
-                            //tabwrapper.style.top = 60 + 'px'
                         } else {
                             tabwrapper.classList.remove('fixed');
-                            //tabwrapper.style.position = 'relative'
-                            //tabwrapper.style.top = 0 + 'px'
                         }
                         this.wait = false;
                     });

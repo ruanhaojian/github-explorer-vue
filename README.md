@@ -1,6 +1,6 @@
 # github-explorer-vue
 
-> gihub explorer web apps using vue.
+> github explorer web apps using vue.
 
 ## Demo
 

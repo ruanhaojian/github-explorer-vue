@@ -41,3 +41,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 * Webpack for bundle
 * Babel for ES6 syntax
 * vue-cli for building the project's structure
+
+## Reference
+
+[github-explorer](https://github.com/trungdq88/github-explorer)

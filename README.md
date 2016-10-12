@@ -44,4 +44,4 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## Reference
 
-[github-explorer](https://github.com/trungdq88/github-explorer)
+[github-explorer](https://github.com/trungdq88/github-explorer) using react + rxjs.

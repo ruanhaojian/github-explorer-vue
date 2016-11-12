@@ -1,5 +1,5 @@
 <template>
-    
+
     <a v-link="{name: 'REPO_DETAIL' , params: { username: this.repo.owner.login, repoName: this.repo.name }}"
        class="repo-item"
     >

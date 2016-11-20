@@ -3,6 +3,7 @@
  */
 import * as resources from './resources'
 
+
 export default {
     getRandomUser: () => resources.getRandomUserResource.get(),
     getUserProfile: (username) => resources.getUserProfileResource.get({username:username}),
